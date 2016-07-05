@@ -25,7 +25,7 @@ public class Bazooka : MonoBehaviour
 	{
 		if (animator.GetBool ("Die"))
 			return;
-		if (animator) {
+		if (animator && GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerController> ().mode == PlayMode.play) {
 			animator.SetFloat ("Aim", load ? 1 : 0, .1f, Time.deltaTime);
 
 			float aim = animator.GetFloat ("Aim");

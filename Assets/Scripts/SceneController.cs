@@ -21,9 +21,4 @@ public class SceneController : MonoBehaviour
 				SceneManager.LoadScene ("Level1");
 		}
 	}
-
-	void OnGUI ()
-	{
-		GUI.Label (new Rect (300, 50, 200, 50), "Press K to Skip to next Level");
-	}
 }
