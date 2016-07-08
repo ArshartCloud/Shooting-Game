@@ -1,0 +1,79 @@
+ManifestFileVersion: 0
+CRC: 1240735706
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: a399d069e1835e1ac5be972df7fc084b
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: b155050019d493f18861566e093aa29a
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 20
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 81
+  Script: {instanceID: 0}
+- Class: 90
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 92
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3de737c3de9032647932ef83fbf5b82a, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 96d747b7448081c4ba79a290b459ddd4, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9437498cb8354e34886350c5c66fd5e5, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 37f6605f2d3df44448c5bc0efdb6d70d, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 124
+  Script: {instanceID: 0}
+- Class: 136
+  Script: {instanceID: 0}
+- Class: 137
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 223
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/U_Character_REF.prefab
+Dependencies:
+- Assets/ABs/prefab/bullet

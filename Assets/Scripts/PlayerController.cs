@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityStandardAssets.CrossPlatformInput;
 
 public enum PlayMode
 {
@@ -20,10 +22,12 @@ public class PlayerController : MonoBehaviour
 
 	protected Animator animator;
 	public float DirectionDampTime = .25f;
-	public bool ApplyGravity = true;
 
 	public Text scoreText;
 	public PlayMode mode = PlayMode.play;
+
+	public BulletType bulletType;
+	public Text bulletText;
 
 	void Start ()
 	{
@@ -40,6 +44,9 @@ public class PlayerController : MonoBehaviour
 		maxScore = PlayerPrefs.GetInt ("MaxScore");
 
 		scoreText.text = "Score: 0\nMax Score: " + maxScore;
+
+		ChangeBullet (BulletType.Normal);
+
 	}
 
 	void Update ()
@@ -48,12 +55,12 @@ public class PlayerController : MonoBehaviour
 			if (animator.GetBool ("Die"))
 				return;
 			if (animator) {
-				float h = Input.GetAxis ("Horizontal");
-				float v = Input.GetAxis ("Vertical");
+				float h = CrossPlatformInputManager.GetAxis ("Horizontal");
+				float v = CrossPlatformInputManager.GetAxis ("Vertical");
 				int k = 1;
 				if (v < 0)
 					k = -1;
-				animator.SetFloat ("Speed", (h * h + v * v) * k);
+				animator.SetFloat ("Speed", (h * h + v * v) * k * speed);
 				animator.SetFloat ("Direction", h, DirectionDampTime, Time.deltaTime);	
 			}
 
@@ -61,11 +68,19 @@ public class PlayerController : MonoBehaviour
 			if (Mathf.Abs (Time.timeScale) < float.Epsilon)
 				return;
 
-			float yRot = Input.GetAxis ("Mouse X") * speed;
-			float xRot = Input.GetAxis ("Mouse Y") * -1 * speed;
+#if !MOBILE_INPUT
+			float yRot = Input.GetAxis ("Mouse X");
+			float xRot = Input.GetAxis ("Mouse Y") * -1;
+
 
 			transform.Rotate (new Vector3 (0, yRot, 0));
 			camera.transform.Rotate (new Vector3 (xRot, 0, 0));
+			if (Input.GetKeyDown (KeyCode.E)) {
+				SwitchBullet ();
+			}
+			if (Input.GetKeyDown (KeyCode.LeftShift)) {
+				Blink ();
+			}
 		}
 		if (Input.GetKeyDown (KeyCode.Q)) {
 			if (Cursor.lockState == CursorLockMode.Locked) {
@@ -77,6 +92,7 @@ public class PlayerController : MonoBehaviour
 				mode = PlayMode.play;
 			}
 		}
+#endif
 	}
 
 	public void AddScore (int deltaScore)
@@ -88,4 +104,34 @@ public class PlayerController : MonoBehaviour
 		}
 		scoreText.text = "Score: " + score.ToString () + "\nMax Score: " + maxScore;
 	}
+
+	public void ChangeBullet (BulletType type)
+	{
+		bulletType = type;
+		bulletText.text = "Bullet: " + type.ToString ();
+//		;
+	}
+
+
+	public void SwitchBullet ()
+	{
+		if (bulletType == BulletType.Normal) {
+			ChangeBullet (BulletType.Anaesthetic);
+		} else if (bulletType == BulletType.Anaesthetic) {
+			ChangeBullet (BulletType.Grenade);
+		} else {
+			ChangeBullet (BulletType.Normal);
+		}
+	}
+
+	public void Reset ()
+	{
+		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+	}
+
+	public void Blink ()
+	{
+		transform.Translate (transform.forward * 5);
+	}
+		
 }

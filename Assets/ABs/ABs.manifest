@@ -1,0 +1,13 @@
+ManifestFileVersion: 0
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: color
+      Dependencies: {}
+    Info_1:
+      Name: prefab/player
+      Dependencies:
+        Dependency_0: prefab/bullet
+    Info_2:
+      Name: prefab/bullet
+      Dependencies: {}

@@ -14,11 +14,11 @@ public class SceneController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (Input.GetKeyDown (KeyCode.K)) {
-			if (SceneManager.GetActiveScene () == SceneManager.GetSceneByName ("Level1"))
-				SceneManager.LoadScene ("Level2");
-			if (SceneManager.GetActiveScene () == SceneManager.GetSceneByName ("Level2"))
-				SceneManager.LoadScene ("Level1");
-		}
+//		if (Input.GetKeyDown (KeyCode.K)) {
+//			if (SceneManager.GetActiveScene () == SceneManager.GetSceneByName ("Level1"))
+//				SceneManager.LoadScene ("Level2");
+//			if (SceneManager.GetActiveScene () == SceneManager.GetSceneByName ("Level2"))
+//				SceneManager.LoadScene ("Level1");
+//		}
 	}
 }

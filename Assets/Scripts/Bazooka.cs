@@ -4,7 +4,7 @@ using System.Collections;
 public class Bazooka : MonoBehaviour
 {
 
-	protected Animator animator;
+	public Animator animator;
 	public GameObject targetA = null;
 	public GameObject leftHandle = null;
 	public GameObject rightHandle = null;
@@ -12,12 +12,10 @@ public class Bazooka : MonoBehaviour
 	public GameObject bullet = null;
 	public GameObject spawm = null;
 
-	private bool load = false;
+	private bool load = true;
 
-	// Use this for initialization
 	void Start ()
 	{
-		animator = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -25,7 +23,7 @@ public class Bazooka : MonoBehaviour
 	{
 		if (animator.GetBool ("Die"))
 			return;
-		if (animator && GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerController> ().mode == PlayMode.play) {
+		if (animator && GetComponent<PlayerController> ().mode == PlayMode.play) {
 			animator.SetFloat ("Aim", load ? 1 : 0, .1f, Time.deltaTime);
 
 			float aim = animator.GetFloat ("Aim");
@@ -35,19 +33,20 @@ public class Bazooka : MonoBehaviour
 				animator.SetFloat ("Fire", 1);
 
 				if (bullet != null && spawm != null) {
-					Instantiate (bullet, spawm.transform.position, spawm.transform.rotation);
+					GameObject newBullet = (GameObject)Instantiate (bullet, spawm.transform.position, spawm.transform.rotation);
+					newBullet.GetComponent<Bullet> ().SetType (gameObject.GetComponent<PlayerController> ().bulletType);
 				}
 			} else {
 				animator.SetFloat ("Fire", 0, 0.1f, Time.deltaTime);
 			}
 
  
-			if (Input.GetButton ("Fire2")) {
-				if (load && aim > 0.99) {
-					load = false;
-				} else if (!load && aim < 0.01)
-					load = true;
-			}
+//			if (Input.GetButton ("Fire2")) {
+//				if (load && aim > 0.99) {
+//					load = false;
+//				} else if (!load && aim < 0.01)
+//					load = true;
+//			}
 				
 		}   		  
 	}
@@ -96,4 +95,6 @@ public class Bazooka : MonoBehaviour
 			}
 		}
 	}
+
+
 }
